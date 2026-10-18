@@ -1,11 +1,22 @@
 # Problem: Valid Palindrome (NeetCode 10) 
 # Category: Two Pointers 
-# Time Complexity: O(N) - Linear pass regex filtration and string reversal 
-# Space Complexity: O(N) - Allocates memory for filtered and reversed string copies
+# Time Complexity: O(N) - Single pass scanning inward from both ends 
+# Space Complexity: O(1) - Constant space processing string in-place class Solution:
 
 import re
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        newstr = re.sub(r"[^a-zA-Z0-9]", "", s).lower()
-        return newstr == newstr[::-1]
+        L, R = 0, len(s) - 1
+
+        while L < R:
+            while L < R and not s[L].isalnum(): 
+                L += 1
+            while L < R and not s[R].isalnum(): 
+                R -= 1
+            if s[L].lower() != s[R].lower(): 
+                return False 
+            L += 1 
+            R -= 1 
+            
+        return True
