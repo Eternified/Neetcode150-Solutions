@@ -5,6 +5,8 @@
 
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
+        if len(s2) < len(s1):
+            return False
 
         l = 0
         s1_count = {}
